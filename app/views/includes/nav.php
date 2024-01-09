@@ -7,15 +7,17 @@
     <link href="https://fonts.cdnfonts.com/css/huntesla-gloficka" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://fonts.cdnfonts.com/css/huntesla-gloficka" rel="stylesheet">
+
     <title>WIKI.to</title>
 </head>
     
 
 <nav id="navbar" class="navbar px-5 navbar-expand-lg navbar-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand d-flex text-secondary gap-2" href="index.php">
-        <img class="w-25" src="../../../../lasthope/public/assets/logo.png" alt="">
-        <p style="font-family: '', sans-serif;">Wiki<span>.to</span></p>
+        <a class="navbar-brand d-flex text-secondary gap-2" href="/">
+        <img class="w-25" src="./assets/logo.png" alt="">
+        
+        <p style="font-family: '', sans-serif;">Wiki<span style="font-family: 'Arial'">.to</span></p>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

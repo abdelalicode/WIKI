@@ -1,5 +1,8 @@
 <?php
-include_once "../core/database.php";
+include_once "../app/core/database.php";
+
+
+
 
 class Wiki extends Db
 {
@@ -68,15 +71,18 @@ class Wiki extends Db
     public function getWikis()
     {
             $sqlallwiki = "SELECT * FROM wiki ORDER BY creation_date DESC";
-            $result = $this->connect()->query($sqlallwiki)->fetchAll();
+             return $this->connect()->query($sqlallwiki)->fetchAll(PDO::FETCH_OBJ);
+    }
 
-            foreach($result as $res) {
-                echo $res->title;
-            }
-           
+    public function getCategories()
+    {
+            $sqlallcat = "SELECT * FROM categorie ORDER BY dated DESC";
+             return $this->connect()->query($sqlallcat)->fetchAll(PDO::FETCH_OBJ);
+    }
 
+    public function readWiki($idwiki)
+    {
+            $sqlallwiki = "SELECT * FROM wiki WHERE id = $idwiki";
+             return $this->connect()->query($sqlallwiki)->fetchAll(PDO::FETCH_OBJ);
     }
 }
-
-$Objwiki = new Wiki();
-$Objwiki->getWikis();
