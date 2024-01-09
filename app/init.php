@@ -1,6 +1,6 @@
 <?php
+require_once "../app/core/App.php";
 
-require_once "core/App.php";
-require_once "core/Controller.php";
+// use app\core\App;
 
 $app = new App();
