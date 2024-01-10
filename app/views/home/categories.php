@@ -7,7 +7,7 @@
 
             <?php
 
-            $colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark'];
+            $colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'dark'];
 
             $randomcolor = $colors[array_rand($colors)];
 

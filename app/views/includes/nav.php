@@ -28,7 +28,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <?php if(isset($_SESSION)) { ?>
+                <?php if(isset($_SESSION['role_id'])) { ?>
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 gap-3">
                     <li class="nav-item">
                         <a class="nav-link active d-flex text-secondary" aria-current="page" href="writing.php"><span class="material-symbols-outlined">
@@ -37,21 +37,10 @@
                             <span>WRITE</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active d-flex text-secondary" aria-current="page" href="#">
-
-                            <span class="material-symbols-outlined">
-                                book_5
-                            </span>
-                            <span>BROWSE</span>
-
-
-
-                        </a>
-                    </li>
+                    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle active text-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            USER
+                       <?= $_SESSION['firstname'] ?>
                         </a>
                         <ul class="dropdown-menu text-secondary">
                             <li><a class="dropdown-item " href="#">PROFILE</a></li>
@@ -59,14 +48,14 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">LOGOUT</a></li>
+                            <li><a class="dropdown-item" href="/Auth/logout">LOGOUT</a></li>
                         </ul>
                     </li>
                 </ul>
            <?php  }  else {?>
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 gap-3">
-           <a href=""><button type="button" class="btn btn-outline-secondary">LOG IN</button></a>
-           <a href=""><button type="button" class="btn btn-outline-success">SIGN UP</button></a>
+           <a href="Auth/insign"><button type="button" class="btn btn-outline-secondary">LOG IN</button></a>
+           <a href="Auth/upsign"><button type="button" class="btn btn-outline-success">SIGN UP</button></a>
 </ul>
 <?php  }?>
             </div>
