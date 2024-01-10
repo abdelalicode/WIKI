@@ -21,6 +21,7 @@ class Home
     public function params($array)
     {
         $idwiki = implode("", $array);
+        
         $read = $this->Objwiki->readWiki($idwiki);
         if($read)
         {
