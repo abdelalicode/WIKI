@@ -38,11 +38,13 @@
               <div class="row gy-3 gy-md-4 overflow-hidden">
                 <div class="col-12">
                   <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                  <input type="email" class="form-control" name="email" placeholder="name@example.com" required>
+                  <input type="email" class="form-control" name="email" placeholder="name@example.com" id="email-field" required onkeyup="validateEmail()">
+                  <div style="color: red;" id="email-error"></div>
                 </div>
                 <div class="col-12">
                   <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-                  <input type="password" class="form-control" name="password" value="" required>
+                  <input type="password" class="form-control" name="password" id="password-field" required onkeyup="validatePassword()">
+                  <div style="color: red;" id="password-error"></div>
                 </div>
                 <div class="col-12">
                   <div class="form-check">
@@ -74,5 +76,35 @@
     </div>
   </div>
 </section>
+
+
+<script>
+const emailField = document.getElementById("email-field");
+const passwordField = document.getElementById("password-field");
+const emailError = document.getElementById("email-error");
+const passwordError = document.getElementById("password-error");
+
+function validateEmail() {
+   if(!emailField.value.match(/^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/)) {
+      emailError.innerHTML = "Please Enter a valid email";
+      emailField.style.borderBottomColor = "red";
+      return false;
+   }
+   emailError.innerHTML = "";
+   emailField.style.borderBottomColor = "green";
+   return true;
+  }
+
+  function validatePassword() {
+   if(passwordField.value.length < 6) {
+      passwordError.innerHTML = "Password must be more than 6 characters";
+      passwordField.style.borderBottomColor = "red";
+      return false;
+   }
+   emailError.innerHTML = "";
+   emailField.style.borderBottomColor = "green";
+   return true;
+  }
+</script>
 </body>
 </html>
