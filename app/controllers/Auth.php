@@ -24,13 +24,14 @@ class Auth
 
     public function signup(){
         extract($_POST);
-        $setUser = $this->Objuser->setUser($firstname, $lastname, $email, $password);
+        $hashedpassword = password_hash($password, PASSWORD_DEFAULT);
+        $setUser = $this->Objuser->setUser($firstname, $lastname, $email, $hashedpassword);
         $signUser = $this->Objuser->createUser();
         if ($signUser) {
             include_once "../app/views/view/signin.php";
         }
         else{
-            echo "LA";
+            echo "Not Registered";
         }
     }
     
@@ -38,7 +39,6 @@ class Auth
     {
         extract($_POST);
         $signUser = $this->Objuser->signUser($email, $password);
-
         if ($signUser) {
             $_SESSION['id'] = $signUser['id'];
             $_SESSION['role_id'] = $signUser['role_id'];
@@ -53,7 +53,7 @@ class Auth
     public function checkUser($id)
     {
         if ($id == 1) {
-                echo "ADMIN";
+            header("Location: /Admin/index");
         } else if ($id == 2) {
             header("Location: /");
         }
