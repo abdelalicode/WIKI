@@ -39,16 +39,16 @@ class Categorie extends Db
             return $stmtcat->execute([$this->name]);
     }
 
-    public function updateCategorie()
+    public function updateCategorie($name , $idup)
     {
-            $sqlupdcat = "UPDATE `categorie` SET `name`= ? WHERE `id`='[value-1]'";
+            $sqlupdcat = "UPDATE `categorie` SET `name`= ? WHERE `id`=?";
             $stmtupcat = $this->connect()->prepare($sqlupdcat);
-            return $stmtupcat->execute([$this->name]);
+            return $stmtupcat->execute([$name, $idup]);
     }
 
-    public function deleteCategorie()
+    public function deleteCategorie($id)
     {
-            $sqldeldcat = "DELETE FROM `categorie` WHERE `id`='[value-1]'";
+            $sqldeldcat = "DELETE FROM `categorie` WHERE `id`=$id";
             $stmtdelcat = $this->connect()->prepare($sqldeldcat);
             return $stmtdelcat->execute();
     }

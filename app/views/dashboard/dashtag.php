@@ -13,19 +13,19 @@ note_stack_add
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Tag</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form action="index.php" method="post" class="form-signin d-flex flex-column justify-content-center">
+      <form action="/Admin/insertag" method="post" class="form-signin d-flex flex-column justify-content-center">
                 <div>
-                    <label for="inputName" class="align-self-start m-2">Category Name</label>
-                    <input type="text" name="name" class="form-control v-25" placeholder="Category Name" required autofocus value="">
+                    <label for="inputName" class="align-self-start m-2">Tag Name</label>
+                    <input type="text" name="name" class="form-control v-25" placeholder="Tag Name" required autofocus value="">
                 </div>
                 <br><br>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="action" value="updateCategory" class="btn btn-primary">ADD NEW</button>
+                    <button type="submit" name="action" class="btn btn-primary">ADD NEW</button>
                 </div>
             </form>
       </div>
@@ -56,7 +56,7 @@ note_stack_add
                     </button>
                 </td>
                 <td>
-                    <a href="index.php?action=delete&id=<?= $tag->id ?>">
+                    <a href="/Admin/deletet/<?= $tag->id ?>">
                         <button type="button" class="btn btn-outline-danger">
                             <span class="material-symbols-outlined">
                                 delete
@@ -73,8 +73,8 @@ note_stack_add
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="index.php" method="post" class="form-signin d-flex flex-column justify-content-center">
-                <input type="hidden" name="idup" value="<?= $tag->id ?>">
+            <form action="/Admin/updatetag" method="post" class="form-signin d-flex flex-column justify-content-center">
+                <input type="hidden" name="id" value="<?= $tag->id ?>">
                 <div>
                     <label for="inputName" class="align-self-start m-2">Category Name</label>
                     <input type="text" name="name" class="form-control v-25" placeholder="Category Name" required autofocus value="<?= $tag->name ?>">
@@ -82,7 +82,7 @@ note_stack_add
                 <br><br>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="action" value="updateCategory" class="btn btn-primary">UPDATE</button>
+                    <button type="submit" name="action" class="btn btn-primary">UPDATE</button>
                 </div>
             </form>
         </div>

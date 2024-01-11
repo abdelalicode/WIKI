@@ -31,23 +31,23 @@ class Tag extends Db
              return $this->connect()->query($sqlalltag)->fetchAll(PDO::FETCH_OBJ);         
     }
 
-    public function setTags()
+    public function setTag()
     {
             $sqlsettag = "INSERT INTO tag (`name`) VALUES (?)";
             $stmttag = $this->connect()->prepare($sqlsettag);
             return $stmttag->execute([$this->name]);
     }
 
-    public function updateTags()
+    public function updateTag($name, $idup)
     {
-            $sqlupdtag = "UPDATE `tag` SET `name`= ? WHERE `id`='[value-1]'";
+            $sqlupdtag = "UPDATE `tag` SET `name`= ? WHERE `id`=?";
             $stmtuptag = $this->connect()->prepare($sqlupdtag);
-            return $stmtuptag->execute([$this->name]);
+            return $stmtuptag->execute([$name, $idup]);
     }
 
-    public function deleteTags()
+    public function deleteTag($id)
     {
-            $sqldeltag = "DELETE FROM `tag` WHERE `id`='[value-1]'";
+            $sqldeltag = "DELETE FROM `tag` WHERE `id`=$id";
             $stmtdeltag = $this->connect()->prepare($sqldeltag);
             return $stmtdeltag->execute();
     }
