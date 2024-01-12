@@ -19,7 +19,7 @@
             <tr>
                 <td><?= $archivewiki->id ?></td>
                 <td><?= $archivewiki->title ?></td>              
-                <td><td><a href="/Admin/unarchive"><button type="button" class="btn btn-warning">UNARCHIVE</button></a></td></td>              
+                <td><a href="/Admin/unarchive/<?= $archivewiki->id ?>"><button type="button" class="btn btn-warning">UNARCHIVE</button></a></td>           
             </tr>
             
        
