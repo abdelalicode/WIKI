@@ -121,9 +121,9 @@ class Admin
     public function activewikis()
     {
         $actwikis = $this->Objwiki->getWikis();
-        if($actwikis){
-            $this->view('dashboard/dashactwikis', ['actwikis' => $actwikis]);
-        }
+    
+        $this->view('dashboard/dashactwikis', ['actwikis' => $actwikis]);
+        
     }
 
     public function archivedwikis()
@@ -134,9 +134,22 @@ class Admin
     
     }
 
-    public function archivethewiki()
+    public function archivethewiki($array)
     {
-        $archivewikisàçytfdc = $this->Objwiki->getArchivedWikis();
+        $idwiki = implode("", $array);
+        $archivewikis = $this->Objwiki->ArchiveWiki($idwiki);
+        if($archivewikis){
+            $this->activewikis();
+        }
+    }
+
+    public function unarchive($array)
+    {
+        $idwiki = implode("", $array);
+        $unarchivewikis = $this->Objwiki->unarchiveWiki($idwiki);
+        if($unarchivewikis){
+            $this->archivedwikis();
+        }
     }
 
 

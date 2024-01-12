@@ -120,6 +120,14 @@ class Wiki extends Db
         return $stmtarchwiki->execute();
     }
 
+    public function unarchiveWiki($idwiki)
+    {
+        $sqlunarchive = "UPDATE `wikis` SET `status` = '1' WHERE `wikis`.`id` = $idwiki";
+        $stmtunarchwiki = $this->connect()->prepare($sqlunarchive);
+        return $stmtunarchwiki->execute();
+    }
+
+
 
     public function deleteWiki($idd)
     {

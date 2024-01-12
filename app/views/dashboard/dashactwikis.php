@@ -19,7 +19,7 @@
             <tr>
                 <td><?= $actwiki->id ?></td>
                 <td><?= $actwiki->title ?></td>              
-                <td><a href="/Admin/archive"><button type="button" class="btn btn-warning">ARCHIVE</button></a></td>              
+                <td><a href="/Admin/archivethewiki/<?= $actwiki->id ?>"><button type="button" class="btn btn-warning">ARCHIVE</button></a></td>              
             </tr>
             
        
