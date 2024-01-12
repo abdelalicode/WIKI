@@ -45,7 +45,7 @@ class Auth
             $_SESSION['firstname'] = $signUser['firstname'];
             $this->checkUser($_SESSION['role_id']);
         } else {
-            echo "AHAA ACHRIF!";
+            echo "Wrong Inputs!";
         }
     }
 

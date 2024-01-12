@@ -101,5 +101,9 @@ class User extends Db
         return null;
     }
 
+    public function getuserStats(){
+        $sqlstatuser = "SELECT COUNT(*) FROM users WHERE role_id = 2";
+        return $this->connect()->query($sqlstatuser)->fetchColumn();
+    }
 
 }

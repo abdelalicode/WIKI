@@ -14,7 +14,7 @@
 
    <div class="jumbotron bg-success text-white p-5">
   <h2 class="display-4">Hello <?= $_SESSION['firstname']?></h2>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <p class="lead">The main use of the dashboard is to show a comprehensive overview of data from different sources. Dashboards are useful for monitoring, measuring, and analyzing</p>
   <hr class="my-4">
   <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
   <a class="btn btn-outline-light btn-lg" href="#" role="button">Go to website</a>

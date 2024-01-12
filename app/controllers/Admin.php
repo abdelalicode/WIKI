@@ -2,16 +2,26 @@
 include "../app/models/User.php";
 include "../app/models/Categorie.php";
 include "../app/models/Tag.php";
+include "../app/models/Wiki.php";
+
+if($_SESSION['role_id']  != 1) {
+    header("Location: /");
+}
+else {
 
 class Admin
 {
     private $Objcat;
     private $Objtag;
+    private $Objwiki;
+    private $Objuser;
 
     public function __construct()
     {
         $this->Objcat = new Categorie();
         $this->Objtag = new Tag();
+        $this->Objwiki = new Wiki();
+        $this->Objuser = new User();
     }
 
     public function index()
@@ -70,8 +80,8 @@ class Admin
     {
         $name = $_POST['name'];
         $idup = $_POST['id'];
-        $updatetag = $this->Objtag->updateTag($name, $idup);
-        if($updatetag)
+        $updtag = $this->Objtag->updateTag($name, $idup);
+        if($updtag)
         {
             $this->tags();
         }
@@ -99,6 +109,31 @@ class Admin
         }
     }
 
+    public function stats()
+    {
+        $wikistats = $this->Objwiki->getwikiStats();
+        $userstats = $this->Objuser->getuserStats();
+        if($wikistats && $userstats){
+            $this->view('dashboard/dashstats', ['wikistats' => $wikistats, 'userstats' => $userstats]);
+        }
+    }
+
+    public function activewikis()
+    {
+        $actwikis = $this->Objwiki->getWikis();
+        if($actwikis){
+            $this->view('dashboard/dashactwikis', ['actwikis' => $actwikis]);
+        }
+    }
+
+    public function archivedwikis()
+    {
+        $archivewikis = $this->Objwiki->getArchivedWikis();
+        
+        $this->view('dashboard/dasharchivedwikis', ['archivewikis' => $archivewikis]);
+    
+    }
+
 
     // Render Methods
     public function view($view, $data = [])
@@ -108,9 +143,10 @@ class Admin
     }
 
 
-
     public function viewonly($view)
     {
         include '../app/views/'. $view .'.php';
     }
+}
+
 }

@@ -26,13 +26,11 @@ CREATE TABLE categorie(
     name VARCHAR(255)
 );
 
-CREATE TABLE wiki(
-    id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE wikis(
+    id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255),
     content TEXT,
     creation_date TIMESTAMP,
-    tag_id INT,
-    FOREIGN KEY (tag_id) REFERENCES tag(id),
     cat_id INT,
     FOREIGN KEY (cat_id) REFERENCES categorie(id)
 );
@@ -40,17 +38,17 @@ CREATE TABLE wiki(
 ALTER TABLE wiki
 DROP COLUMN tag_id ;
 
-ALTER TABLE wiki
-ADD COLUMN status BOOLEAN;
+ALTER TABLE wikis
+ADD COLUMN status BOOLEAN DEFAULT 1;
 
-ALTER TABLE wiki
+ALTER TABLE wikis
 ADD COLUMN user_id INT;
-ALTER TABLE wiki
+ALTER TABLE wikis
 ADD CONSTRAINT FOREIGN KEY (user_id) REFERENCES users(id);
 
 CREATE TABLE wikitag(
     tag_id INT,
     FOREIGN KEY (tag_id) REFERENCES tag(id),
     wiki_id INT,
-    FOREIGN KEY (wiki_id) REFERENCES wiki(id)
+    FOREIGN KEY (wiki_id) REFERENCES wikis(id)
 );

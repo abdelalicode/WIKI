@@ -41,9 +41,26 @@
         <div class="m-3" style="font-size: 1.8em;">
             <a href="/Admin/cats" class="nav-link m-3 py-1">CATEGORIES</a>
             <a href="/Admin/tags" class="nav-link m-3 py-1">TAGS</a>
-            <a href="/Home/wikis" class="nav-link m-3 py-1">WIKIS</a>
             <a href="/Admin/stats" class="nav-link m-3 py-1">STATISTICS</a>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+  <div class="accordion-item" >
+    <div class="accordion-header" id="flush-headingOne" >
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="background-color: #f6f6f6;">
+        WIKIS
+      </button>
+  </div>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+      <a href="/Admin/activewikis" class="nav-link m-3 py-1" >ACTIVE WIKIS</a>
+      <a href="/Admin/archivedwikis" class="nav-link m-3 py-1" >ARCHIVED</a>
+      </div>
+    </div>
+  </div>
+  
+</div>
         </div>
+
+        <a href="/" class="nav-link m-3 py-1"><button type="button" class="btn btn-outline-dark">GO TO WEBSITE</button></a>
        
    
 

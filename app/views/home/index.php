@@ -3,12 +3,14 @@ include_once "../app/views/includes/nav.php";
 include_once "../app/views/includes/middle.php";
 ?>
 
+
+
 <div class="container mt-5">
-<!-- Hello <?= $data['name'] ?> -->
+
 <h2 class="text-secondary mb-5">LATEST WIKIS</h2>
 
 <div class="row">
-   <div class="d-flex justify-content-center gap-5">
+   <div class="d-flex flex-wrap justify-content-center gap-5">
     <hr>
   
     <?php foreach ($wikis as $wiki) : ?>

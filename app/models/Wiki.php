@@ -70,8 +70,43 @@ class Wiki extends Db
 
     public function getWikis()
     {
-            $sqlallwiki = "SELECT * FROM wiki ORDER BY creation_date DESC";
+            $sqlallwiki = "SELECT * FROM wikis WHERE `status` = 1 ORDER BY creation_date DESC";
              return $this->connect()->query($sqlallwiki)->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function getUserWikis($userid)
+    {
+            $sqlallwiki = "SELECT * FROM wikis WHERE `user_id` = $userid";
+            return $this->connect()->query($sqlallwiki)->fetchAll(PDO::FETCH_OBJ);
+    }
+
+
+    public function addWiki($title, $content, $categorie, $iduser)
+    {
+        $sqladdw = "INSERT INTO wikis ( `title`, `content`,`cat_id`, `user_id`) VALUES (? , ? , ? , ?)";
+        $stmtaddwiki = $this->connect()->prepare($sqladdw);
+        $stmtaddwiki->execute([$title, $content, $categorie, $iduser]);
+        return $this->connect()->lastInsertId();
+    }
+
+    public function insertWikiTag($addwiki, $choice)
+    {
+        $sqladdwtg = "INSERT INTO `wikitag`(`tag_id`, `wiki_id`) VALUES (? , ?)";
+        $stmtaddwikitag = $this->connect()->prepare($sqladdwtg);
+        return $stmtaddwikitag->execute([$choice, $addwiki]);
+    }
+
+
+
+    public function getArchivedWikis()
+    {
+            $sqlallwiki = "SELECT * FROM wikis WHERE `status` = 0 ORDER BY creation_date DESC";
+             return $this->connect()->query($sqlallwiki)->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function ArchiveWiki()
+    {
+        
     }
 
     public function getCategories()
@@ -82,7 +117,12 @@ class Wiki extends Db
 
     public function readWiki($idwiki)
     {
-            $sqlallwiki = "SELECT * FROM wiki WHERE id = $idwiki";
+            $sqlallwiki = "SELECT * FROM wikis WHERE id = $idwiki";
              return $this->connect()->query($sqlallwiki)->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function getwikiStats(){
+        $sqlstatwiki = "SELECT COUNT(*) FROM wikis";
+        return $this->connect()->query($sqlstatwiki)->fetchColumn();
     }
 }

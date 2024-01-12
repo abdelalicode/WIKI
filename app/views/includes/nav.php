@@ -10,14 +10,16 @@
 
     <title>WIKI.to</title>
 </head>
-    
+
 
 <nav id="navbar" class="navbar px-5 navbar-expand-lg navbar-dark fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand d-flex text-secondary gap-2" href="/">
-        <img class="w-25" src="./assets/logo.png" alt="">
-        
-        <p style="font-family: '', sans-serif;">Wiki<span style="font-family: 'Arial'">.to</span></p>
+            <!-- <img class="w-25" src="./assets/logo.png" alt=""> -->
+            <img class="w-25" src="https://i.ibb.co/z6mKzYv/google.png" alt="" />
+            
+
+            <p style="font-family: '', sans-serif;">Wiki<span style="font-family: 'Arial'">.to</span></p>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -28,36 +30,40 @@
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <?php if(isset($_SESSION['role_id'])) { ?>
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 gap-3">
-                    <li class="nav-item">
-                        <a class="nav-link active d-flex text-secondary" aria-current="page" href="writing.php"><span class="material-symbols-outlined">
-                                history_edu
-                            </span>
-                            <span>WRITE</span>
-                        </a>
-                    </li>
-                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active text-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                       <?= $_SESSION['firstname'] ?>
-                        </a>
-                        <ul class="dropdown-menu text-secondary">
-                            <li><a class="dropdown-item " href="#">PROFILE</a></li>
-                            <li><a class="dropdown-item" href="your_articles.php">YOUR ARTICLES</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="/Auth/logout">LOGOUT</a></li>
-                        </ul>
-                    </li>
-                </ul>
-           <?php  }  else {?>
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 gap-3">
-           <a href="Auth/insign"><button type="button" class="btn btn-outline-secondary">LOG IN</button></a>
-           <a href="Auth/upsign"><button type="button" class="btn btn-outline-success">SIGN UP</button></a>
-</ul>
-<?php  }?>
+                <?php if (isset($_SESSION['role_id'])) { ?>
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 gap-3">
+                        <li class="nav-item">
+                            <a class="nav-link active d-flex text-secondary" aria-current="page" href="/Writer/addwikibutton"><span class="material-symbols-outlined">
+                                    history_edu
+                                </span>
+                                <span>WRITE</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active text-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <?= $_SESSION['firstname'] ?>
+                            </a>
+                            <ul class="dropdown-menu text-secondary">
+                                <li><a class="dropdown-item " href="#">PROFILE</a></li>
+                                <?php if ($_SESSION['role_id']  == 1) {
+                                    echo "<a href='/Admin/index' class='dropdown-item'>GO TO DASHBOARD</a>";
+                                } else { ?>
+                                    <li><a class="dropdown-item" href="/Writer/getuserwiki">YOUR ARTICLES</a></li>
+                                <?php } ?>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="/Auth/logout">LOGOUT</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                <?php  } else { ?>
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 gap-3">
+                        <a href="Auth/insign"><button type="button" class="btn btn-outline-secondary">LOG IN</button></a>
+                        <a href="Auth/upsign"><button type="button" class="btn btn-outline-success">SIGN UP</button></a>
+                    </ul>
+                <?php  } ?>
             </div>
         </div>
     </div>
@@ -80,4 +86,3 @@
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
