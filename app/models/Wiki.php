@@ -2,8 +2,6 @@
 include_once "../app/core/database.php";
 
 
-
-
 class Wiki extends Db
 {
     private $id;
@@ -74,6 +72,12 @@ class Wiki extends Db
              return $this->connect()->query($sqlallwiki)->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function getSearchWikis($searchitem)
+    {
+            $sqlsearchwiki = "SELECT wikis.*, categorie.name  AS category, GROUP_CONCAT(tag.name) AS tags FROM wikis INNER JOIN categorie ON wikis.cat_id = categorie.id LEFT JOIN wikitag ON wikitag.wiki_id = wikis.id LEFT JOIN tag ON tag.id = wikitag.tag_id  where wikis.title like '%$searchitem%' or tag.name like '%$searchitem%' or categorie.name like '%$searchitem%' GROUP BY wikis.id"; 
+             return $this->connect()->query($sqlsearchwiki)->fetchAll(PDO::FETCH_OBJ);
+    }
+
     public function getUserWikis($userid)
     {
             $sqlallwiki = "SELECT * FROM wikis WHERE `user_id` = $userid";
@@ -96,7 +100,12 @@ class Wiki extends Db
         return $stmtaddwikitag->execute([$choice, $addwiki]);
     }
 
-
+    public function updateWiki($title, $content, $idup)
+    {
+        $sqlupdw = "UPDATE `wikis` SET `title`= ? ,`content`= ? WHERE `id`= ?";
+        $stmtupdwiki = $this->connect()->prepare($sqlupdw);
+        return $stmtupdwiki->execute([$title, $content, $idup]);
+    }
 
     public function getArchivedWikis()
     {
@@ -104,9 +113,19 @@ class Wiki extends Db
              return $this->connect()->query($sqlallwiki)->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function ArchiveWiki()
+    public function ArchiveWiki($idwiki)
     {
-        
+        $sqlarchive = "UPDATE `wikis` SET `status` = '0' WHERE `wikis`.`id` = $idwiki";
+        $stmtarchwiki = $this->connect()->prepare($sqlarchive);
+        return $stmtarchwiki->execute();
+    }
+
+
+    public function deleteWiki($idd)
+    {
+            $sqldeldwiki = "DELETE FROM `wikis` WHERE `id`=$idd";
+            $stmtdelwiki = $this->connect()->prepare($sqldeldwiki);
+            return $stmtdelwiki->execute();
     }
 
     public function getCategories()
@@ -117,8 +136,14 @@ class Wiki extends Db
 
     public function readWiki($idwiki)
     {
-            $sqlallwiki = "SELECT * FROM wikis WHERE id = $idwiki";
+            $sqlallwiki = "SELECT wikis.title, wikis.content, wikis.creation_date, categorie.name, users.firstname, users.lastname FROM wikis  JOIN CATEGORIE on wikis.cat_id = categorie.id JOIN users on wikis.user_id = users.id WHERE `status` = 1 AND wikis.id = $idwiki";
              return $this->connect()->query($sqlallwiki)->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function getWikiTags($idwiki)
+    {
+        $sqltagwiki ="SELECT * FROM tag JOIN wikitag on tag.id = wikitag.tag_id JOIN wikis on wikitag.wiki_id = wikis.id WHERE wikis.id = $idwiki";
+        return $this->connect()->query($sqltagwiki)->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function getwikiStats(){

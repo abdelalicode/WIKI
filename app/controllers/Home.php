@@ -17,15 +17,23 @@ class Home
         $this->view('home/index', ['wikis' => $wikis, 'categories' => $categories]);
     }
 
+    public function search($search)
+    {
+        $searchitem = implode("", $search);
+        // echo json_encode($searchitem);
+        $search = $this->Objwiki->getSearchWikis($searchitem);
+        echo  json_encode($search);
+    }
 
     public function params($array)
     {
         $idwiki = implode("", $array);
         
         $read = $this->Objwiki->readWiki($idwiki);
+        $tagswiki = $this->Objwiki->getWikiTags($idwiki);
         if($read)
         {
-            $this->view('home/details', ['read' => $read]);
+            $this->view('home/details', ['read' => $read, 'tagswiki' => $tagswiki]);
         }
     }
 

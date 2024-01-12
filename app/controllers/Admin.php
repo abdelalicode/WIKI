@@ -134,6 +134,11 @@ class Admin
     
     }
 
+    public function archivethewiki()
+    {
+        $archivewikisàçytfdc = $this->Objwiki->getArchivedWikis();
+    }
+
 
     // Render Methods
     public function view($view, $data = [])

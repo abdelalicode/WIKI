@@ -16,7 +16,7 @@
               <input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="Your Title">
             </div>
             <div class="mb-3">
-              <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+              <label for="exampleFormControlTextarea1" class="form-label">Your Wiki Content</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
             </div>
 
